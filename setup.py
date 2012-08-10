@@ -29,13 +29,14 @@ setup(name='simplemanagement.policy',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # 'Products.CMFCore',
+          'Products.CMFCore',
+          'abstract.simplemanagement',
           # -*- loadcontent requirements: -*-
-          # 'plone.app.transmogrifier',
+          'plone.app.transmogrifier',
           # 'transmogrify.dexterity',
           # -*- suggested requirements: -*-
           # 'collective.portletpage',
-          # 'collective.contentleadimage',
+          'collective.contentleadimage',
           # 'collective.quickupload',
           # 'collective.oembed',
           # 'collective.js.oembed',
