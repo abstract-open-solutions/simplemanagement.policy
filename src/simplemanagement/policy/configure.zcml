@@ -1,0 +1,40 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="simplemanagement.policy">
+
+  <!-- Include configuration for dependencies listed in setup.py -->
+  <includeDependencies package="." />
+
+  <i18n:registerTranslations directory="locales" />
+
+  <!-- Register an extension profile to make the product installable
+       in Plone -->
+  <genericsetup:registerProfile
+      name="default"
+      title="Simple management buildout and boilerplate for testing"
+      directory="profiles/default"
+      description="Extension profile for Simple management buildout and boilerplate for testing"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="simplemanagement.policy"
+      title="simplemanagement.policy extra import handlers"
+      description=""
+      handler="simplemanagement.policy.setuphandlers.import_various" />
+
+  <!-- development profile -->
+  <genericsetup:registerProfile
+      name="development"
+      title="Simple management buildout and boilerplate for testing (Development)"
+      directory="profiles/development"
+      description="Development profile for Simple management buildout and boilerplate for testing"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+</configure>

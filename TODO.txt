@@ -1,0 +1,17 @@
+TODO
+====
+
+* aggiungere collectionmultiview
+* aggiungere una pagina sostitutiva con istruzioni su cosa e come fare
+
+- dipendenze
+* plone.app.caching
+
+
+Riciclare IPortletPage come marker interface per differenti tipi di contenuto
+Ovvero non vincolare le portlet di portletPage ad un tipo di contenuto specifico - abstract.portletface
+
+* togliere filtri all'advanced search form - template che riscriviamo sempre
+* produrre viste personalizzate - spesso utilizzate
+
+* valutare - http://plone.org/products/plonetheme.responsivetheme

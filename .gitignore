@@ -1,0 +1,20 @@
+# Ignore buildout dirs
+eggs
+bin
+develop-eggs
+parts
+.installed.cfg
+Paste*
+
+# Ignore python compiled files
+*.py[co]
+# Ignore eggs
+*.egg-info
+# Translation files
+*.mo
+# Ignore backups
+*~
+.*.swp
+# CSSEdit backups
+._*
+

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<portlets>
+   <!-- Portlet type registrations -->
+   <portlet
+     addview="portlets.Calendar"
+     remove="True"
+     />
+
+   <portlet
+     addview="portlets.Classic"
+     remove="True"
+     />
+
+   <portlet
+     addview="portlets.News"
+     remove="True"
+     />
+
+   <portlet
+     addview="portlets.Events"
+     remove="True"
+     />
+
+   <portlet
+     addview="portlets.Recent"
+     remove="True"
+     />
+
+   <portlet
+     addview="portlets.Review"
+     remove="True"
+     />
+
+   <!-- remove News and events portlet assignment -->
+   <assignment
+     purge="True"
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     />
+
+</portlets>
