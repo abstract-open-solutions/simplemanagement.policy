@@ -3,8 +3,11 @@ eggs
 bin
 develop-eggs
 parts
-.installed.cfg
 Paste*
+extras
+var
+.mr.developer.cfg
+.installed.cfg
 
 # Ignore python compiled files
 *.py[co]
@@ -17,4 +20,3 @@ Paste*
 .*.swp
 # CSSEdit backups
 ._*
-
