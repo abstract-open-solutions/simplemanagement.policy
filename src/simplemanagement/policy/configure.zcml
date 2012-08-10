@@ -37,4 +37,7 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
+  <include file="load_content.zcml" />
+
+
 </configure>

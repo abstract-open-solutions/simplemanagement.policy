@@ -1,5 +1,16 @@
 from Products.CMFPlone.utils import getToolByName
 # -*- extra stuff goes here -*-
+from collective.transmogrifier.transmogrifier import Transmogrifier
+
+
+def load_content(context):
+    if context.readDataFile('loadcontent_various.txt') is None:
+        return
+    portal = context.getSite()
+
+    transmogrifier = Transmogrifier(portal)
+    transmogrifier(u'load_content')
+    return 'Imported content types...'
 
 
 def disable_cmfedition_versioning(portal):

@@ -1,10 +1,12 @@
 <metadata>
   <version>1.0</version>
     <dependencies>
+      <dependency>profile-collective.contentleadimage:default</dependency>
+      <dependency>profile-abstract.simplemanagement:default</dependency>
+
       <!-- suggested dependencies -->
       <!--
         <dependency>profile-collective.portletpage:default</dependency>
-        <dependency>profile-collective.contentleadimage:default</dependency>
         <dependency>profile-collective.quickupload:default</dependency>
         <dependency>profile-collective.oembed:default</dependency>
         <dependency>profile-collective.js.oembed:default</dependency>
