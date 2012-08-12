@@ -14,7 +14,7 @@
        in Plone -->
   <genericsetup:registerProfile
       name="default"
-      title="Simple management buildout and boilerplate for testing"
+      title="Simple management policy"
       directory="profiles/default"
       description="Extension profile for Simple management buildout and boilerplate for testing"
       provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -29,7 +29,7 @@
   <!-- development profile -->
   <genericsetup:registerProfile
       name="development"
-      title="Simple management buildout and boilerplate for testing (Development)"
+      title="Simple management policy (Development)"
       directory="profiles/development"
       description="Development profile for Simple management buildout and boilerplate for testing"
       provides="Products.GenericSetup.interfaces.EXTENSION"
