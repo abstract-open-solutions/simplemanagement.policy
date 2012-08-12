@@ -7,11 +7,10 @@
 
     <include package="collective.transmogrifier" file="meta.zcml"/>
     <include package="collective.transmogrifier.sections"/>
-    <!-- <include package="transmogrify.dexterity"/> -->
 
     <genericsetup:registerProfile
         name="loadcontent"
-        title="simplemanagement.policy Load content"
+        title="Simple management policy (Load content)"
         directory="profiles/loadcontent"
         description="Load default content of the simplemanagement.policy package"
         provides="Products.GenericSetup.interfaces.EXTENSION"
