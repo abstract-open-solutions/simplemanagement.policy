@@ -3,7 +3,8 @@
     <dependencies>
       <dependency>profile-collective.contentleadimage:default</dependency>
       <dependency>profile-abstract.simplemanagement:default</dependency>
-
+      <dependency>profile-plone.app.toolbar:default</dependency>
+      <dependency>profile-collective.quickupload:default</dependency>
       <!-- suggested dependencies -->
       <!--
         <dependency>profile-collective.portletpage:default</dependency>
