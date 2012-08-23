@@ -30,7 +30,7 @@ setup(name='simplemanagement.policy',
           'setuptools',
           'Products.CMFCore',
           'abstract.simplemanagement',
-          'plone.app.toolbar',
+          # 'plone.app.toolbar',
           'collective.quickupload',
           # -*- loadcontent requirements: -*-
           'plone.app.transmogrifier',
