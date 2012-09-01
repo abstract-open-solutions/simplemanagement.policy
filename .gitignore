@@ -20,3 +20,9 @@ var
 .*.swp
 # CSSEdit backups
 ._*
+# Virtualenv
+lib64
+lib
+include
+# Emacs
+.emacs*
