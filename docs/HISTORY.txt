@@ -4,6 +4,7 @@ Changelog
 1.0 - Unreleased
 ----------------
 
+* switch simplemanagement to collective namespace
 * added transmogrify.dexterity
 * added plone.app.toolbar
 * changed profile titles

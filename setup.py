@@ -29,7 +29,7 @@ setup(name='simplemanagement.policy',
       install_requires=[
           'setuptools',
           'Products.CMFCore',
-          'abstract.simplemanagement',
+          'collective.simplemanagement',
           # 'plone.app.toolbar',
           'collective.quickupload',
           # -*- loadcontent requirements: -*-

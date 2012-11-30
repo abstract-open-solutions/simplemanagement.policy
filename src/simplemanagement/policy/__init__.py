@@ -6,7 +6,7 @@ MessageFactory = MessageFactory('simplemanagement.policy')
 
 
 def set_operatives(item):
-    from abstract.simplemanagement.structures import Resource
+    from collective.simplemanagement.structures import Resource
     data = eval(item)
 
     def create_operative(val):
@@ -19,7 +19,7 @@ def set_operatives(item):
 
 
 def set_environments(item):
-    from abstract.simplemanagement.structures import Environment
+    from collective.simplemanagement.structures import Environment
     data = eval(item)
 
     def create_obj(val):
@@ -34,7 +34,7 @@ def set_environments(item):
 
 
 def set_milestones(item):
-    from abstract.simplemanagement.structures import Milestone
+    from collective.simplemanagement.structures import Milestone
     data = eval(item)
 
     def create_obj(val):
