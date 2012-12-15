@@ -4,8 +4,9 @@ import os
 version = '1.0'
 
 tests_requirements = [
-          'plone.app.testing',
-        ]
+    'plone.app.testing',
+    'collective.simplemanagement[test]'
+]
 
 setup(name='simplemanagement.policy',
       version=version,
