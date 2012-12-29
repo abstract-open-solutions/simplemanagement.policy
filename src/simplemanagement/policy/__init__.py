@@ -1,4 +1,5 @@
-from DateTime import DateTime
+import re
+from datetime import date, timedelta
 from zope.i18nmessageid import MessageFactory
 
 # Set up the i18n message factory for our package
@@ -45,3 +46,22 @@ def set_milestones(item):
         return res
 
     return [create_obj(i) for i in data]
+
+
+DATE_REGEX = re.compile(
+    r'^(?P<sign>\+|-)(?P<value>[0-9]+)(?P<quantifier>[dw])$'
+)
+
+
+def convert_date(value):
+    today = date.today()
+    values = DATE_REGEX.match(value).groupdict()
+    delta_value = int(values['value'])
+    if values['quantifier'] == 'd':
+        delta = timedelta(days=delta_value)
+    elif values['quantifier'] == 'w':
+        delta = timedelta(days=(delta_value*7))
+    if values['sign'] == '+':
+        return today + delta
+    else:
+        return today - delta
