@@ -38,7 +38,7 @@ setup(name='simplemanagement.policy',
           'transmogrify.dexterity',
           # -*- suggested requirements: -*-
           # 'collective.portletpage',
-          'collective.contentleadimage',
+          # 'collective.contentleadimage',
           # 'collective.quickupload',
           # 'collective.oembed',
           # 'collective.js.oembed',
