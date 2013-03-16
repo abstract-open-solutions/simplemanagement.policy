@@ -1,16 +1,24 @@
+import pkg_resources
 from Products.CMFPlone.utils import getToolByName
-# -*- extra stuff goes here -*-
-from collective.transmogrifier.transmogrifier import Transmogrifier
+
+try:
+    pkg_resources.get_distribution('collective.transmogrifier')
+except pkg_resources.DistributionNotFound:
+    HAS_TRANSMOGRIFIER = False
+else:
+    from collective.transmogrifier.transmogrifier import Transmogrifier
+    HAS_TRANSMOGRIFIER = True
 
 
 def load_content(context):
     if context.readDataFile('loadcontent_various.txt') is None:
         return
     portal = context.getSite()
-
-    transmogrifier = Transmogrifier(portal)
-    transmogrifier(u'load_content')
-    return 'Imported content types...'
+    if HAS_TRANSMOGRIFIER:
+        transmogrifier = Transmogrifier(portal)
+        transmogrifier(u'load_content')
+        return 'Imported content types...'
+    return 'Please install collective.transmogrifier to use this import step'
 
 
 def disable_cmfedition_versioning(portal):
