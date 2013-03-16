@@ -11,12 +11,14 @@ tests_requirements = [
 setup(name='simplemanagement.policy',
       version=version,
       description="Simple management buildout and boilerplate for testing",
-      long_description=open("README.txt").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+      long_description=(
+          open("README.txt").read() + "\n" +
+          open(os.path.join("docs", "HISTORY.txt")).read()
+      ),
       classifiers=[
-        "Programming Language :: Python",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-        ],
+          "Programming Language :: Python",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+      ],
       keywords='',
       author='Abstract',
       author_email='info@abstract.it',
@@ -46,10 +48,10 @@ setup(name='simplemanagement.policy',
       ],
       tests_require=tests_requirements,
       extras_require={
-        'development': [
-            'collective.loremipsum',
-        ],
-        'test': tests_requirements,
+          'development': [
+              'collective.loremipsum',
+          ],
+          'test': tests_requirements,
       },
       entry_points="""
       # -*- Entry points: -*-
