@@ -24,6 +24,15 @@
       <depends name="plone-final"/>
     </genericsetup:importStep>
 
+    <genericsetup:importStep
+        name="create_users"
+        title="Setup users for testing"
+        description=""
+        handler=".setuphandlers.create_users">
+      <depends name="plone-final"/>
+    </genericsetup:importStep>
+
+
     <transmogrifier:registerConfig
          name="load_content"
          title="Load content"
