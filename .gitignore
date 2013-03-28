@@ -26,3 +26,4 @@ lib
 include
 # Emacs
 .emacs*
+.DS_Store
