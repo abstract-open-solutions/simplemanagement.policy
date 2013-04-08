@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <object name="portal_skins" allow_any="False" cookie_persistence="False">
 
-  <object name="simplemanagement"
+  <object name="simplemanagement_skins"
         meta_type="Filesystem Directory View"
-        directory="simplemanagement.policy:skins/simplemanagement"/>
+        directory="simplemanagement.policy:skins/simplemanagement_skins"/>
 
   <skin-path name="*">
-    <layer name="simplemanagement"
+    <layer name="simplemanagement_skins"
            insert-after="custom"/>
   </skin-path>
 

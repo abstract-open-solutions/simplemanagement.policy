@@ -12,7 +12,7 @@
 
   <i18n:registerTranslations directory="locales" />
 
-  <cmf:registerDirectory name="simplemanagement" />
+  <cmf:registerDirectory name="simplemanagement_skins" />
 
   <!-- Register an extension profile to make the product installable
        in Plone -->
