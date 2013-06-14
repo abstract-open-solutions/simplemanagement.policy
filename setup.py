@@ -34,7 +34,6 @@ setup(name='simplemanagement.policy',
           'Products.CMFCore',
           'collective.simplemanagement',
           # 'plone.app.toolbar',
-          'collective.quickupload',
           'wildcard.foldercontents',
           # -*- suggested requirements: -*-
           # 'collective.portletpage',

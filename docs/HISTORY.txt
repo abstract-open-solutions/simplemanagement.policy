@@ -4,6 +4,9 @@ Changelog
 1.0 - Unreleased
 ----------------
 
+* remove collective.quickupload
+  [gborelli]
+
 * add wildcard.foldercontents
   [gborelli]
 
