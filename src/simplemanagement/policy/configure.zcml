@@ -39,6 +39,8 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <include file="upgrades.zcml" />
+
   <!-- -*- extra stuff goes here -*- -->
   <configure zcml:condition="installed collective.transmogrifier">
     <include file="load_content.zcml" />
