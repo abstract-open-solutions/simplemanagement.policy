@@ -4,9 +4,18 @@ Changelog
 1.0 - Unreleased
 ----------------
 
-* overrode temporarily inline_validation.js see.:https://github.com/plone/Products.CMFPlone/pull/56 [giorgio]
-* added test users [giorgio]
-* check if c.transmogrifier is installed [giorgio]
+* remove loadcontent profile
+  [gborelli]
+
+* overrode temporarily inline_validation.js see.:https://github.com/plone/Products.CMFPlone/pull/56
+  [gborelli]
+
+* added test users
+  [gborelli]
+
+* check if c.transmogrifier is installed
+  [gborelli]
+
 * switch simplemanagement to collective namespace
 * added transmogrify.dexterity
 * added plone.app.toolbar

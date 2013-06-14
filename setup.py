@@ -35,9 +35,6 @@ setup(name='simplemanagement.policy',
           'collective.simplemanagement',
           # 'plone.app.toolbar',
           'collective.quickupload',
-          # -*- loadcontent requirements: -*-
-          'plone.app.transmogrifier',
-          'transmogrify.dexterity',
           # -*- suggested requirements: -*-
           # 'collective.portletpage',
           # 'collective.contentleadimage',
