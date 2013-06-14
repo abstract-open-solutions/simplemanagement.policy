@@ -14,6 +14,14 @@
 
   <cmf:registerDirectory name="simplemanagement_skins" />
 
+  <subscriber for="collective.simplemanagement.interfaces.IProject
+                   zope.lifecycleevent.interfaces.IObjectAddedEvent"
+              handler=".events.create_reporting_story" />
+
+  <subscriber for="collective.simplemanagement.interfaces.IProject
+                   zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+              handler=".events.create_reporting_story" />
+
   <!-- Register an extension profile to make the product installable
        in Plone -->
   <genericsetup:registerProfile
