@@ -35,6 +35,7 @@ setup(name='simplemanagement.policy',
           'collective.simplemanagement',
           # 'plone.app.toolbar',
           'wildcard.foldercontents',
+          'plone.app.ldap',
           # -*- suggested requirements: -*-
           # 'collective.portletpage',
           # 'collective.contentleadimage',

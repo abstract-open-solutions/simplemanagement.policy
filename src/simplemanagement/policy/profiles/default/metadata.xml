@@ -5,6 +5,7 @@
       <dependency>profile-collective.simplemanagement:default</dependency>
       <!-- <dependency>profile-plone.app.toolbar:default</dependency> -->
       <dependency>profile-wildcard.foldercontents:default</dependency>
+      <dependency>profile-plone.app.ldap:ldap</dependency>
       <!-- suggested dependencies -->
       <!--
         <dependency>profile-collective.portletpage:default</dependency>
