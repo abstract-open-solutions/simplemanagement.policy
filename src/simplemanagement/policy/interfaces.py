@@ -16,7 +16,5 @@ class IGenericReportingConfig(form.Schema):
         default=True,
     )
 
-    # form.widget(activate_generic_reporting=CheckBoxFieldWidget)
-
 
 alsoProvides(IGenericReportingConfig, form.IFormFieldProvider)
