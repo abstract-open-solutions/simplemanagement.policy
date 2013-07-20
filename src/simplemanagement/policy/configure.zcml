@@ -5,6 +5,7 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:cmf="http://namespaces.zope.org/cmf"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="simplemanagement.policy">
 
   <!-- Include configuration for dependencies listed in setup.py -->
@@ -16,11 +17,18 @@
 
   <subscriber for="collective.simplemanagement.interfaces.IProject
                    zope.lifecycleevent.interfaces.IObjectAddedEvent"
-              handler=".events.create_reporting_story" />
+              handler=".events.create_generic_reporting_ui" />
 
   <subscriber for="collective.simplemanagement.interfaces.IProject
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-              handler=".events.create_reporting_story" />
+              handler=".events.create_generic_reporting_ui" />
+
+  <plone:behavior
+      title="Generic Reporting Behavior"
+      description="This behaviour activate the generic reporting ui"
+      provides=".interfaces.IGenericReportingConfig"
+      for="collective.simplemanagement.interfaces.IProject"
+      />
 
   <!-- Register an extension profile to make the product installable
        in Plone -->
