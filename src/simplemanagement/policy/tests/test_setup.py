@@ -22,17 +22,15 @@ class TestSetup(unittest.TestCase):
         self.pt = getToolByName(self.portal, 'portal_types')
 
     def test_dependencies(self):
-        products = ['collective.portletpage',
-            'collective.contentleadimage',
-            # 'collective.quickupload',
-            # 'collective.oembed',
-            # 'collective.js.oembed',
+        products = [
+            "collective.simplemanagement",
+            "wildcard.foldercontents"
         ]
 
         for el in products:
             self.assertTrue(
                 self.qi.isProductInstalled(el),
-                    "%s is not installed" % el)
+                "%s is not installed" % el)
 
     def test_portaltypes(self):
         types = ['Event', 'Link', 'News Item']
@@ -40,16 +38,14 @@ class TestSetup(unittest.TestCase):
             self.assertFalse(self.pt[el].global_allow)
 
     def test_defaulviews(self):
-        types = [('Plone Site',
-                    ("folder_summary_view",
-                     "folder_listing")),
-                ('Folder',
-                    ("folder_summary_view",
-                     "folder_listing")),
-                ('Topic',
-                    ("folder_summary_view",
-                     "folder_listing",
-                     "atct_topic_view"))]
+        types = [
+            ('Plone Site',
+                ("folder_summary_view", "folder_listing")),
+            ('Folder',
+                ("folder_summary_view", "folder_listing")),
+            ('Topic',
+                ("folder_summary_view", "folder_listing", "atct_topic_view"))
+        ]
 
         for _id, views in types:
             self.assertEqual(self.pt[_id].view_methods, views)
@@ -60,8 +56,9 @@ class TestSetup(unittest.TestCase):
 
     def test_portlets(self):
         right = getUtility(IPortletManager, name='plone.rightcolumn')
-        assignment = getMultiAdapter((self.portal, right),
-                                   IPortletAssignmentMapping)
+        assignment = getMultiAdapter(
+            (self.portal, right),
+            IPortletAssignmentMapping)
         self.assertEqual(assignment.items(), [])
 
     def test_portletsAddable(self):
