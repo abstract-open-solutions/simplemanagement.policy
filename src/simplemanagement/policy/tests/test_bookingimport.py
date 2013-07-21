@@ -7,6 +7,9 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
 from collective.simplemanagement.interfaces import IBooking
+from collective.simplemanagement.interfaces import IStory
+from collective.simplemanagement.interfaces import IProject
+
 from ..testing import INTEGRATION_TESTING
 from ..bookingimporter import BookingImporter
 
@@ -25,8 +28,11 @@ class TestBookingImport(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Member'])
 
     def test_retrieve_project(self):
+        project = self.uploader.get_project('test-project')
+        self.assertTrue(IProject.providedBy(project))
+
         self.assertEqual(
-            self.uploader.get_project('test-project'),
+            project,
             self.project
         )
 
@@ -37,8 +43,10 @@ class TestBookingImport(unittest.TestCase):
         )
 
     def test_retrieve_story(self):
+        story = self.uploader.get_story('test-project', 'test-story-1')
+        self.assertTrue(IStory.providedBy(story))
         self.assertEqual(
-            self.uploader.get_story('test-project', 'test-story-1'),
+            story,
             self.project['test-story-1']
         )
 

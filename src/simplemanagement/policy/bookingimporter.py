@@ -6,6 +6,8 @@ from zope.component.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 
+from collective.simplemanagement.interfaces import IStory
+from collective.simplemanagement.interfaces import IProject
 from collective.simplemanagement.booking import create_booking
 from .interfaces import IBookingImporter
 
@@ -36,7 +38,11 @@ class BookingImporter(object):
 
     def get_project(self, project_id):
         """Return first project by id"""
-        brains = self._catalog.search({'getId': project_id})
+        brains = self._catalog.search({
+            'getId': project_id,
+            'object_provides': IProject.__identifier__,
+        })
+
         if brains:
             if len(brains) > 1:
                 self.add_message(
@@ -55,6 +61,7 @@ class BookingImporter(object):
         project = self.get_project(project_id)
         brains = self._catalog.search({
             'getId': story_id,
+            'object_provides': IStory.__identifier__,
             'path': '/'.join(project.getPhysicalPath())
         })
         if brains:
