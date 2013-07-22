@@ -14,4 +14,15 @@
       profile="simplemanagement.policy:default"
       />
 
+  <genericsetup:upgradeStep
+      title="Setup browserlayer"
+      description=""
+      source="1001"
+      destination="1002"
+      handler=".upgrades.upgrade_to_1002"
+      sortkey="1"
+      profile="simplemanagement.policy:default"
+      />
+
+
 </configure>

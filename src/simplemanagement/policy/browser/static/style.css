@@ -1,0 +1,15 @@
+.info .message-type {
+    color: green;
+}
+
+.warning .message-type {
+    color: orange;
+}
+
+.error .message-type {
+    color: red;
+}
+
+.message-type {
+    font-weight: bold;
+}

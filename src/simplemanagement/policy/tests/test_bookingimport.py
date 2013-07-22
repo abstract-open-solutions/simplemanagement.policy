@@ -14,6 +14,13 @@ from ..testing import INTEGRATION_TESTING
 from ..bookingimporter import BookingImporter
 
 
+class TestBookingImporter(BookingImporter):
+
+    def process_data(self, data):
+        """Override this method to prevent NotImplemented Error"""
+        return data
+
+
 class TestBookingImport(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
@@ -22,23 +29,24 @@ class TestBookingImport(unittest.TestCase):
         self.portal = self.layer['portal']
         self.project = self.portal['test-project']
         setRoles(self.portal, TEST_USER_ID, ['Employee'])
-        self.uploader = BookingImporter(self.portal)
+        self.uploader = TestBookingImporter(self.portal)
 
     def tearDown(self):
         setRoles(self.portal, TEST_USER_ID, ['Member'])
 
     def test_retrieve_project(self):
-        project = self.uploader.get_project('test-project')
-        self.assertTrue(IProject.providedBy(project))
-
+        project_path = self.uploader.get_project_path('test-project')
         self.assertEqual(
-            project,
-            self.project
+            project_path,
+            '/'.join(self.project.getPhysicalPath()),
         )
+
+        project = self.portal.restrictedTraverse(project_path)
+        self.assertTrue(IProject.providedBy(project))
 
         self.assertRaises(
             KeyError,
-            self.uploader.get_project,
+            self.uploader.get_project_path,
             'not-exists'
         )
 

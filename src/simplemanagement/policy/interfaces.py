@@ -4,8 +4,13 @@ from zope import schema
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 from plone.directives import form
+from plone.theme.interfaces import IDefaultPloneLayer
 
 from . import MessageFactory as _
+
+
+class IBrowserLayer(IDefaultPloneLayer):
+    """The browser layer of the package"""
 
 
 class IGenericReportingConfig(form.Schema):
@@ -29,7 +34,7 @@ class IBookingImporter(Interface):
         """Add message in self.message property and in standard log
         """
 
-    def get_project(project_id):
+    def get_project_path(project_id):
         """Look into portal_catalog and return first project with project_id
         """
     def get_story(project_id, story_id):

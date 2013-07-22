@@ -4,13 +4,27 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="simplemanagement.policy">
 
+  <browser:resourceDirectory
+    directory="static"
+    name="simplemanagement-policy"
+    layer="..interfaces.IBrowserLayer"
+    />
 
   <browser:page
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
-    name="worklog_backend"
-    class=".worklog.WorklogBackend"
+    name="openerp_view"
+    class=".openerpview.OpenERPView"
     layer="..interfaces.IBrowserLayer"
     permission="simplemanagement.ManageProject"
+  />
+
+  <browser:page
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    name="uploadbooking"
+    class=".uploadbooking.UploadBooking"
+    template="templates/uploadbooking.pt"
+    layer="..interfaces.IBrowserLayer"
+    permission="simplemanagement.AddBooking"
   />
 
 </configure>

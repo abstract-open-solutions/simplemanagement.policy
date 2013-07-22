@@ -1,4 +1,6 @@
+import csv
 import logging
+from StringIO import StringIO
 from datetime import datetime
 from decimal import Decimal
 from zope.interface import implements
@@ -36,7 +38,7 @@ class BookingImporter(object):
         if log_method:
             log_method(msg)
 
-    def get_project(self, project_id):
+    def get_project_path(self, project_id):
         """Return first project by id"""
         brains = self._catalog.search({
             'getId': project_id,
@@ -49,20 +51,20 @@ class BookingImporter(object):
                     'More than one project has the same id: %s' % project_id,
                     'warning'
                 )
-            obj = brains[0].getObject()
+
+            path = brains[0].getPath()
             self.add_message(
-                'Got project: %s' % '/'.join(obj.getPhysicalPath()),
+                'Got project: %s' % path
             )
-            return obj
+            return path
 
         raise KeyError("Project not found: %s" % project_id)
 
     def get_story(self, project_id, story_id):
-        project = self.get_project(project_id)
         brains = self._catalog.search({
             'getId': story_id,
             'object_provides': IStory.__identifier__,
-            'path': '/'.join(project.getPhysicalPath())
+            'path': self.get_project_path(project_id)
         })
         if brains:
             if len(brains) > 1:
@@ -79,6 +81,9 @@ class BookingImporter(object):
         raise KeyError("Story not found: %s" % story_id)
 
     def process_data(self, data):
+        raise NotImplementedError
+
+    def add_bookings(self, data):
         bookings = []
         for item in data:
             story = None
@@ -109,5 +114,12 @@ class BookingImporter(object):
 
     def __call__(self, data=[]):
         """Return a list of booking objects"""
-        results = self.process_data(data)
+        results = self.add_bookings(self.process_data(data))
         return results
+
+
+class CsvBookingImporter(BookingImporter):
+
+    def process_data(self, data):
+        fh = StringIO(data)
+        return csv.DictReader(fh)

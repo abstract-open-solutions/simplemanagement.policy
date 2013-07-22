@@ -55,7 +55,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-  <include file="upgrades.zcml" />
+  <adapter
+    for="*"
+    provides=".interfaces.IBookingImporter"
+    factory=".bookingimporter.CsvBookingImporter"
+    name="csv"
+  />
 
+  <include file="upgrades.zcml" />
+  <include package=".browser" />
 
 </configure>

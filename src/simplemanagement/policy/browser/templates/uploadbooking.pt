@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="simplemanagement.policy">
+<body>
+
+<head>
+  <metal:block fill-slot="top_slot"
+               tal:define="dummy python:request.set('disable_border',1)"/>
+</head>
+
+
+<metal:title fill-slot="content-title">
+  <h1 class="documentFirstHeading"
+    i18n:translate="">Upload Booking</h1>
+</metal:title>
+
+<metal:content-core fill-slot="content-core">
+  <metal:block define-macro="content-core">
+    <tal:form content="structure view/form_contents" />
+    <tal:results define="messages view/messages|nothing"
+        condition="messages">
+      <h2 i18n:translate=""
+          i18n:domain='simplemanagement.policy'>Results</h2>
+      <div class="results">
+        <ul>
+          <tal:res repeat="item messages">
+            <li tal:attributes="class python:item[0]">
+              <span class="message-type" tal:content="python:item[0]" />
+              <span tal:content="python:item[1]" />
+            </li>
+          </tal:res>
+        </ul>
+      </div>
+    </tal:results>
+
+  </metal:block>
+</metal:content-core>
+</body>
+</html>
