@@ -54,7 +54,7 @@ class UploadBookingForm(form.Form):
 
         importer(data['bookings'].data)
         self.messages = importer.messages
-        self.status = _(u'Bookings successfully imported')
+        # self.status = _(u'Bookings successfully imported')
 
 
 class UploadBooking(BrowserView):
