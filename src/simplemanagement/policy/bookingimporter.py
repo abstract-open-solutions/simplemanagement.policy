@@ -10,7 +10,7 @@ from Products.CMFCore.utils import getToolByName
 
 from collective.simplemanagement.interfaces import IStory
 from collective.simplemanagement.interfaces import IProject
-from collective.simplemanagement.booking import create_booking
+from collective.simplemanagement.api.booking import create_booking
 from .interfaces import IBookingImporter
 
 
