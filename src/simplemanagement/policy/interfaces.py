@@ -3,7 +3,10 @@ from zope.interface import Interface
 from zope import schema
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
-from plone.directives import form
+# from plone.directives import form
+from plone.supermodel import model
+from plone.autoform import directives as form
+
 from plone.theme.interfaces import IDefaultPloneLayer
 
 from . import MessageFactory as _
@@ -13,7 +16,7 @@ class IBrowserLayer(IDefaultPloneLayer):
     """The browser layer of the package"""
 
 
-class IGenericReportingConfig(form.Schema):
+class IGenericReportingConfig(model.Schema):
 
     activate_generic_reporting = schema.Bool(
         title=_(u"Activate Generic Reporting"),
@@ -23,7 +26,7 @@ class IGenericReportingConfig(form.Schema):
     )
 
 
-alsoProvides(IGenericReportingConfig, form.IFormFieldProvider)
+# alsoProvides(IGenericReportingConfig, form.IFormFieldProvider)
 
 
 class IBookingImporter(Interface):
