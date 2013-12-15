@@ -27,4 +27,12 @@
     permission="simplemanagement.AddBooking"
   />
 
+  <browser:page
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    name="calendar_leaves"
+    class=".calendar.CalendarLeaves"
+    layer="..interfaces.IBrowserLayer"
+    permission="zope2.View"
+  />
+
 </configure>

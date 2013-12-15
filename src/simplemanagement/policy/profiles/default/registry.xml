@@ -1,0 +1,29 @@
+<registry>
+  <record name="openerp.host">
+    <field type="plone.registry.field.TextLine">
+      <title>OpenERP host</title>
+    </field>
+    <value>localhost</value>
+  </record>
+  <record name="openerp.port">
+    <field type="plone.registry.field.Int">
+      <title>OpenERP port</title>
+    </field>
+    <value>8069</value>
+  </record>
+  <record name="openerp.user">
+    <field type="plone.registry.field.TextLine">
+      <title>OpenERP User</title>
+    </field>
+  </record>
+  <record name="openerp.password">
+    <field type="plone.registry.field.TextLine">
+      <title>OpenERP Password</title>
+    </field>
+  </record>
+  <record name="openerp.database">
+    <field type="plone.registry.field.TextLine">
+      <title>OpenERP Database name</title>
+    </field>
+  </record>
+</registry>

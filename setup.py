@@ -33,8 +33,10 @@ setup(name='simplemanagement.policy',
           'setuptools',
           'Products.CMFCore',
           'collective.simplemanagement',
+          'collective.calendarview',
           # 'plone.app.toolbar',
           'wildcard.foldercontents',
+          'oerplib'
           # 'plone.app.ldap',
           # -*- suggested requirements: -*-
           # 'collective.portletpage',
