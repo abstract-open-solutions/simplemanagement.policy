@@ -95,7 +95,7 @@ class CalendarLeaves(BrowserView):
                 'description': description,
                 'start': item.date_from.isoformat(),
                 'end': item.date_to.isoformat(),
-                'allDay': True  # TODO: fix all day
+                'allDay': item.entire_day_flag
                 # 'number_of_days': holiday.number_of_days_temp,
                 # 'number_of_hours': holiday.number_of_hours
             }
