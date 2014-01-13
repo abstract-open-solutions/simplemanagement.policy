@@ -2,7 +2,9 @@
 import json
 import oerplib
 from datetime import datetime
+from time import time
 from zope.component import getUtility
+from plone.memoize import ram
 from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
 
@@ -26,6 +28,7 @@ class CalendarLeaves(BrowserView):
     def _convert_date(self, time_st):
         return datetime.fromtimestamp(int(time_st)).isoformat()
 
+    @ram.cache(lambda *args: time() // (60 * 60))
     def _results(self, start, end):
         """[
               {
