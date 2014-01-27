@@ -88,17 +88,22 @@ class BookingImporter(object):
         for item in data:
             story = None
             try:
+                story_id = item.pop('story_id')
+                project_id = item.pop('project_id')
                 story = self.get_story(
-                    item.pop('project_id'), item.pop('story_id')
+                    project_id.strip(),
+                    story_id.strip()
                 )
             except KeyError as e:
                 self.add_message(e.message, 'error')
                 continue
 
             try:
-                item['time'] = Decimal(item['time'])
+                date_ = item['date'].strip()
+                time_ = item['time'].strip()
+                item['time'] = Decimal(time_)
                 item['date'] = datetime.strptime(
-                    item['date'], self.DATE_FORMAT
+                    date_, self.DATE_FORMAT
                 ).date()
 
                 obj = create_booking(story, item, reindex=True)
