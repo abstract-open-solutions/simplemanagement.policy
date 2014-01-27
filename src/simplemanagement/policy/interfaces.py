@@ -3,7 +3,7 @@ from zope.interface import Interface
 from zope import schema
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
-# from plone.directives import form
+from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from plone.autoform import directives as form
 
@@ -26,7 +26,7 @@ class IGenericReportingConfig(model.Schema):
     )
 
 
-# alsoProvides(IGenericReportingConfig, form.IFormFieldProvider)
+alsoProvides(IGenericReportingConfig, IFormFieldProvider)
 
 
 class IBookingImporter(Interface):
