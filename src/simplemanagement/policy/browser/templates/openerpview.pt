@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="simplemanagement.policy">
+<body>
+
+<head>
+  <metal:block fill-slot="top_slot"
+               tal:define="dummy python:request.set('disable_border',1)"/>
+</head>
+
+
+<metal:main fill-slot="main"
+            tal:define="results view/results">
+     <h1 class="documentFirstHeading"
+         i18n:translate="">Openerp Order - <span
+            i18n:name="order_number"
+            tal:replace="view/order_number" /></h1>
+
+    <tal:results condition="results">
+      <table class="listing">
+        <thead>
+          <tr>
+            <th i18n:translate="">Title</th>
+            <th i18n:translate="">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr tal:repeat="item results">
+            <td>
+              <a tal:attributes="href item/url" tal:content="item/title"
+              /></td>
+            <td tal:content="item/type"></td>
+          </tr>
+        </tbody>
+      </table>
+    </tal:results>
+
+    <tal:noresults condition="not: results">
+      <div>Nessun elemento trovato corrispondente al numero ordine
+        <span tal:content="view/order_number"></span>
+      </div>
+    </tal:noresults>
+
+</metal:main>
+</body>
+</html>

@@ -15,6 +15,7 @@
     name="openerp_view"
     class=".openerpview.OpenERPView"
     layer="..interfaces.IBrowserLayer"
+    template="templates/openerpview.pt"
     permission="simplemanagement.ManageProject"
   />
 
