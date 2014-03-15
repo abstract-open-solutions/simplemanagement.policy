@@ -77,19 +77,20 @@ class OpenOrderRedirectView(OpenERPBase):
 
         connector = OpenerpConnector()
         user_id = connector.login()
-        brains = connector.search(
-            'sales.order',
-            [{'order_number': self.order_number}]
-        )
-        import pdb; pdb.set_trace( )
-        db_name = "abstract_srl"
-        _id = '1239'
-        url = '{base}/?db{db}&id={id}&model={model}&view_type=form'.format({
-            'base' : "http://erp.abstract.it",
-            'db': db_name,
-            'model': 'order',
-            'id': _id
-        })
+        model = 'sale.order'
+        brains = [i for i in connector.search(
+            model, [('name', '=', self.order_number)]
+        )]
 
+        if not brains:
+            raise NotFound(self.context, self.order_number, self.request)
+
+        _id = brains[0].id
+        url = 'http://{host}/?db={db}#id={id}&model={model}&view_type=form&menu_id=295&action=356'.format(
+            host=connector.settings['openerp.host'],
+            db=connector.settings['openerp.database'],
+            model=model,
+            id=_id
+        )
         self.request.response.redirect(url)
         return
