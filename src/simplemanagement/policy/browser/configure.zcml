@@ -21,6 +21,14 @@
 
   <browser:page
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    name="openerp_order_redirect"
+    class=".openerpview.OpenOrderRedirectView"
+    layer="..interfaces.IBrowserLayer"
+    permission="simplemanagement.ManageProject"
+  />
+
+  <browser:page
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
     name="uploadbooking"
     class=".uploadbooking.UploadBooking"
     template="templates/uploadbooking.pt"
@@ -35,5 +43,14 @@
     layer="..interfaces.IBrowserLayer"
     permission="zope2.View"
   />
+
+  <browser:viewlet
+    name="simplemanagement.ordernumber"
+    for="collective.simplemanagement.interfaces.IOrderNumber"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+    layer="..interfaces.IBrowserLayer"
+    class=".viewlets.OrderNumber"
+    permission="zope2.View"
+    />
 
 </configure>

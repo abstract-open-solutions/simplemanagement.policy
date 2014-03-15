@@ -7,12 +7,12 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from plone.autoform import directives as form
 
-from plone.theme.interfaces import IDefaultPloneLayer
+from collective.simplemanagement.interfaces import IBrowserLayer as IBaseLayer
 
 from . import MessageFactory as _
 
 
-class IBrowserLayer(IDefaultPloneLayer):
+class IBrowserLayer(IBaseLayer):
     """The browser layer of the package"""
 
 

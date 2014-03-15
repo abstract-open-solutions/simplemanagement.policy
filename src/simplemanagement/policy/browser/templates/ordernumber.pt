@@ -1,0 +1,11 @@
+<tal:viewlet omit-tag="" condition="view/available"
+    define="ordernumber_link view/ordernumber_link">
+  <div class="ordernumber-viewlet">
+    <h3 class="documentFirstHeading"
+      i18n:translate="">Order number: <a
+      i18n:name="number"
+      tal:content="view/order_number"
+      title="Show OpenERP Order"
+      tal:attributes="href ordernumber_link"  /></h3>
+  </div>
+</tal:viewlet>

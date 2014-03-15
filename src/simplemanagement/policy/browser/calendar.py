@@ -1,29 +1,14 @@
 # -*- coding: utf-8 -*-
 import json
-import oerplib
+
 from datetime import datetime
 from time import time
-from zope.component import getUtility
 from plone.memoize import ram
-from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
+from ..openerp import OpenerpConnector
 
 
 class CalendarLeaves(BrowserView):
-
-    @property
-    def _settings(self):
-        settings = {
-            "openerp.host": None,
-            "openerp.port": None,
-            "openerp.user": None,
-            "openerp.password": None,
-            "openerp.database": None
-        }
-        registry = getUtility(IRegistry)
-        for f in settings:
-            settings[f] = registry[f]
-        return settings
 
     def _convert_date(self, time_st):
         return datetime.fromtimestamp(int(time_st)).isoformat()
@@ -54,23 +39,8 @@ class CalendarLeaves(BrowserView):
             ]
 
         """
-        settings = self._settings
+
         leaves = []
-        oerp = oerplib.OERP(
-            settings['openerp.host'],
-            protocol='xmlrpc',
-            port=settings['openerp.port'],
-        )
-
-        # set timeout
-        oerp.config['timeout'] = 10
-
-        oerp_user = oerp.login(
-            settings['openerp.user'],
-            settings['openerp.password'],
-            settings['openerp.database']
-        )
-
         filters = [
             ('state', '=', 'validate'),
             ('type', '=', 'remove'),  # filter assegnazione permessi
@@ -78,8 +48,9 @@ class CalendarLeaves(BrowserView):
             ('date_to', '<=', self._convert_date(end))
         ]
 
-        _ids = oerp.search('hr.holidays', filters)
-        brains = oerp.browse('hr.holidays', _ids)
+        connector = OpenerpConnector()
+        user_id = connector.login()
+        brains = connector.search('hr.holidays', filters)
 
         for item in brains:
             employee_name = item.employee_id.name

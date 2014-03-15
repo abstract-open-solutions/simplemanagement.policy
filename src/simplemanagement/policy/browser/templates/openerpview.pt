@@ -26,6 +26,7 @@
           <tr>
             <th i18n:translate="">Title</th>
             <th i18n:translate="">Type</th>
+            <th i18n:translate="">State</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +34,8 @@
             <td>
               <a tal:attributes="href item/url" tal:content="item/title"
               /></td>
-            <td tal:content="item/type"></td>
+            <td tal:content="item/type" i18n:translate=""></td>
+            <td tal:content="item/state"></td>
           </tr>
         </tbody>
       </table>
