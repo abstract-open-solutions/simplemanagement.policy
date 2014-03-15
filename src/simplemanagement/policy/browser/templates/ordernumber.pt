@@ -6,6 +6,7 @@
       i18n:name="number"
       tal:content="view/order_number"
       title="Show OpenERP Order"
+      target="_BLANK"
       tal:attributes="href ordernumber_link"  /></h3>
   </div>
 </tal:viewlet>

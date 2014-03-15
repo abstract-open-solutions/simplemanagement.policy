@@ -2,7 +2,9 @@ from plone import api
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
 from zope.publisher.interfaces import NotFound
+from zope.component import getUtility
 from zope.i18n import translate
+from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
 from ..openerp import OpenerpConnector
 
@@ -86,7 +88,9 @@ class OpenOrderRedirectView(OpenERPBase):
             raise NotFound(self.context, self.order_number, self.request)
 
         _id = brains[0].id
-        url = 'http://{host}/?db={db}#id={id}&model={model}&view_type=form&menu_id=295&action=356'.format(
+        registry = getUtility(IRegistry)
+        base_url = registry['openerp.orders_base_url']
+        url = base_url.format(
             host=connector.settings['openerp.host'],
             db=connector.settings['openerp.database'],
             model=model,

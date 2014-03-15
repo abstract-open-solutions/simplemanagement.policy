@@ -26,4 +26,9 @@
       <title>OpenERP Database name</title>
     </field>
   </record>
+  <record name="openerp.orders_base_url">
+    <field type="plone.registry.field.TextLine">
+      <title>OpenERP Orders base url</title>
+    </field>
+  </record>
 </registry>
