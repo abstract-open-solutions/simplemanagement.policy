@@ -85,11 +85,12 @@ class OpenOrderRedirectView(OpenERPBase):
         )]
 
         if not brains:
-            raise NotFound(self.context, self.order_number, self.request)
+            return u"Openerp order not Found"
 
         _id = brains[0].id
         registry = getUtility(IRegistry)
         base_url = registry['openerp.orders_base_url']
+
         url = base_url.format(
             host=connector.settings['openerp.host'],
             db=connector.settings['openerp.database'],
