@@ -69,6 +69,10 @@ def upgrade_to_1004(context, logger=None):
         error = False
         dates = {}
         for el in to_convert:
+            if not el in v:
+                error = True
+                continue
+
             date = convert_date(v[el])
             if not date:
                 logger.error('Impossibile convertire {0} - {1}'.format(
