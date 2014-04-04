@@ -51,6 +51,8 @@ def upgrade_to_1004(context, logger=None):
         'Settembre': '09',
         'Ottobre': '10',
         'Novembre': '11',
+        'november': '11',
+        'desember': '12',
         'Dicembre': '12'
     }
 
