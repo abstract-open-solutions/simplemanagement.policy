@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime
+from datetime import date
 from Products.CMFPlone.utils import getToolByName
 
 # pylint: disable=W0613
@@ -65,25 +66,27 @@ def upgrade_to_1004(context, logger=None):
         for m in months.keys():
             if m in date_str:
                 date_str = date_str.replace(m, months[m])
-                return datetime.strptime(date_str, '%d %m %Y')
+                return datetime.strptime(date_str, '%d %m %Y').date()
 
     for k, v in tool.data.items():
         error = False
-        dates = {}
+        _dates = {}
         for el in to_convert:
             if not el in v:
                 error = True
                 continue
 
-            date = convert_date(v[el])
-            if not date:
-                logger.error('Impossibile convertire {0} - {1}'.format(
-                    v[el], k))
-                error = True
-                continue
-            dates[el] = date
+            if not isinstance(v[el], date):
+                _date = convert_date(v[el])
+                if not _date:
+                    logger.error('Impossibile convertire {0} - {1}'.format(
+                        v[el], k))
+                    error = True
+                    continue
+                _dates[el] = _date
 
         if error:
             continue
 
-        v.update(dates)
+        v.update(_dates)
+        tool.data[k] = v
