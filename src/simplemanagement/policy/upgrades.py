@@ -42,7 +42,9 @@ def upgrade_to_1004(context, logger=None):
     tool = getToolByName(context, 'portal_compass')
     months = {
         'Gennaio': '01',
+        'januar': '01',
         'Febbraio': '02',
+        'februar': '02',
         'Marzo': '03',
         'Aprile': '04',
         'Maggio': '05',
