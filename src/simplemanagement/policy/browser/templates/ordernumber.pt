@@ -1,12 +1,26 @@
 <tal:viewlet omit-tag="" condition="view/available"
-    define="ordernumber_link view/ordernumber_link">
+    define="ordernumber_link view/ordernumber_link;
+            otherordernumbers view/get_otherordernumbers">
   <div class="ordernumber-viewlet">
     <h3 class="documentFirstHeading"
       i18n:translate="">Order number: <a
       i18n:name="number"
+      tal:condition="view/order_number"
       tal:content="view/order_number"
       title="Show OpenERP Order"
       target="_BLANK"
       tal:attributes="href ordernumber_link"  /></h3>
+    <ul class="visualNoMarker" tal:condition="otherordernumbers">
+      <tal:loop repeat="other otherordernumbers">
+          <li i18n:translate="">
+            <img tal:attributes="src other/icon"/>
+            <span class="label" i18n:name="item_name" tal:content="other/title"/>: <a
+            i18n:name="number"
+            tal:content="other/order_number"
+            title="Show OpenERP Order"
+            target="_BLANK"
+            tal:attributes="href other/ordernumber_link"  /></li>
+      </tal:loop>
+    </ul>
   </div>
 </tal:viewlet>
