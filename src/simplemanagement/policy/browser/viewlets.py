@@ -25,7 +25,7 @@ class OrderNumber(ordernumber.OrderNumber):
                     x.order_number.upper()
                 )
             } for x in catalog(**query) if (
-                x.order_number is not None and x.UID != self.context.UID())
+                (x.order_number) and (x.UID != self.context.UID()))
         ]
 
     def ordernumber_link(self, order_number=None):
