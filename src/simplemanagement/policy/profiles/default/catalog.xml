@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+    <!-- indexes -->
+    <index name="openerp_order_number" meta_type="FieldIndex">
+        <indexed_attr value="openerp_order_number" />
+    </index>
+    <index name="openerp_order_number_db" meta_type="FieldIndex">
+      <indexed_attr value="openerp_order_number_db"/>
+    </index>
+
+    <!-- metadata -->
+    <column value="openerp_order_number"/>
+    <column value="openerp_order_number_db"/>
+
+</object>
+

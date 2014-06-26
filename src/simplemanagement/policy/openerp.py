@@ -23,9 +23,12 @@ class OpenerpConnector(object):
     settings = None
     oerp = None
 
-    def __init__(self, timeout=10):
-        if not self.settings:
-            self.settings = self._settings
+    def __init__(self, timeout=10, settings=None):
+        if settings is not None:
+            self.settings = settings
+        else:
+            if not self.settings:
+                self.settings = self._settings
 
         if not self.oerp:
             self.oerp = oerplib.OERP(

@@ -63,6 +63,7 @@
   />
 
   <include file="upgrades.zcml" />
+  <include file="indexer.zcml" />
   <include package=".browser" />
 
 </configure>

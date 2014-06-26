@@ -1,5 +1,5 @@
 <metadata>
-  <version>1003</version>
+  <version>1005</version>
     <dependencies>
       <!-- <dependency>profile-collective.contentleadimage:default</dependency> -->
       <dependency>profile-collective.simplemanagement:default</dependency>

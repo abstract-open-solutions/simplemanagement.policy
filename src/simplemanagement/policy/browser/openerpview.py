@@ -7,6 +7,8 @@ from zope.i18n import translate
 from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
 from ..openerp import OpenerpConnector
+from ..utils import get_openerp_ordernumber
+from ..utils import get_openerp_database_name
 
 
 @implementer(IPublishTraverse)
@@ -29,7 +31,10 @@ class OpenERPView(OpenERPBase):
         catalog = api.portal.get_tool(name='portal_catalog')
         # order_number is stored in lowercase
         order_n = self.order_number.lower()
-        return catalog.searchResults({'order_number': order_n})
+
+        # we search on the catalog the openerp order nuber
+        # without db name in it
+        return catalog.searchResults({'openerp_order_number': order_n})
 
     def format_results(self, brains):
         pt_tool = api.portal.get_tool('portal_types')
@@ -52,7 +57,8 @@ class OpenERPView(OpenERPBase):
                 'title': item.Title,
                 'type': translated_pt[pt],
                 'url': item.getURL(),
-                'state': translated_wf[wf_state]
+                'state': translated_wf[wf_state],
+                'order_number': item.order_number
             })
 
         return results
@@ -77,18 +83,33 @@ class OpenOrderRedirectView(OpenERPBase):
         if not self.order_number:
             raise NotFound(self.context, '', self.request)
 
-        connector = OpenerpConnector()
+        erp_settings = {
+            "openerp.host": None,
+            "openerp.port": None,
+            "openerp.user": None,
+            "openerp.password": None,
+            "openerp.database": None
+        }
+        registry = getUtility(IRegistry)
+        for f in erp_settings:
+            erp_settings[f] = registry[f]
+
+        db_name, order_number = get_openerp_ordernumber(self.order_number)
+        # convert db name in the real one
+        db_name = get_openerp_database_name(db_name)
+        erp_settings["openerp.database"] = db_name
+
+        connector = OpenerpConnector(settings=erp_settings)
         user_id = connector.login()
         model = 'sale.order'
         brains = [i for i in connector.search(
-            model, [('name', '=', self.order_number)]
+            model, [('name', '=', order_number)]
         )]
 
         if not brains:
             return u"Openerp order not Found"
 
         _id = brains[0].id
-        registry = getUtility(IRegistry)
         base_url = registry['openerp.orders_base_url']
 
         url = base_url.format(

@@ -96,3 +96,45 @@ called: Abstract Policy (Development)
 This profile installs:
  * collective.loremipsum
 
+
+OpenERP integration
+===================
+
+Simplemanagement provides a behaviour called 'IOrderNumber' that allow to insert
+a specific order number to different content types.
+
+This order number should be referenced to a real order number defined into OpenERP.
+
+
+From Simplemanagement to OpenERP
+---------------------------------
+
+The join between Simplemanagement and OpenERP is performed by this view:
+
+* openerp_order_redirect/<order number>
+
+By calling the view with the parameter 'ordernumber' the user will be redirect
+to OpenERP object with the same order number.
+
+
+The Order number could be written in two forms:
+
+1. a simple order number referenced to the default OpenERP database
+2. a sequence of two strings separated by | (pipe) representing the OpenERP db and the order number eg.: snc|SO1110 or srl|SO22222
+
+In the first case Simplemanagement will search for the order number in the default OpenERP database. In the second caso simplemanagement will search for a specific OpenERP database.
+
+From OpenERP to Simplemanagement
+--------------------------------
+
+An openerp user could watch Simplemanagement's information about a specific
+order by calling this view:
+
+* openerp_view/<order number>
+
+the user will be redirect to a specific content type that provides the order number
+requested.
+
+
+
+

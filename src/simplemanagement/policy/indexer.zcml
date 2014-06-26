@@ -1,0 +1,15 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="simplemanagement.policy">
+
+  <adapter
+      name="openerp_order_number"
+      factory=".indexer.openerp_order_number"
+      />
+
+  <adapter
+      name="openerp_order_number_db"
+      factory=".indexer.openerp_order_number_db"
+      />
+
+</configure>

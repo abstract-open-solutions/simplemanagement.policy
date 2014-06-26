@@ -44,4 +44,13 @@
       profile="simplemanagement.policy:default"
       />
 
+  <genericsetup:upgradeStep
+      title="Manage different openerp DB"
+      description=""
+      source="1004"
+      destination="1005"
+      handler=".upgrades.upgrade_to_1005"
+      sortkey="1"
+      profile="simplemanagement.policy:default"
+      />
 </configure>

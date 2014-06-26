@@ -92,3 +92,17 @@ def upgrade_to_1004(context, logger=None):
 
         v.update(_dates)
         tool.data[k] = v
+
+
+def upgrade_to_1005(context, logger=None):
+    logger = getLogger(logger)
+    logger.info(
+        "Create openerp_order_number "
+        "and openerp_order_number_db indexes"
+    )
+    context.runImportStepFromProfile(DEFAULT_PROFILE, 'catalog')
+
+    logger.info("Reindex created indexes")
+    pc = getToolByName(context, 'portal_catalog')
+    pc.reindexIndex('openerp_order_number', context.REQUEST)
+    pc.reindexIndex('openerp_order_number_db', context.REQUEST)
