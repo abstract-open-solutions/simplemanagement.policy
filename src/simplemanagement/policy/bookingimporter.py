@@ -5,6 +5,8 @@ from datetime import datetime
 from decimal import Decimal
 from zope.interface import implements
 from zope.component.hooks import getSite
+from plone.uuid.interfaces import IUUID
+from plone import api as plone_api
 
 from Products.CMFCore.utils import getToolByName
 
@@ -15,6 +17,12 @@ from .interfaces import IBookingImporter
 
 
 logger = logging.getLogger('simplemanagement.policy')
+
+
+def _decode(value):
+    if isinstance(value, str):
+        return value.decode('utf-8')
+    return value
 
 
 class BookingImporter(object):
@@ -105,8 +113,15 @@ class BookingImporter(object):
                 item['date'] = datetime.strptime(
                     date_, self.DATE_FORMAT
                 ).date()
+                item['references'] = ('Story', IUUID(story))
+                item['owner'] = plone_api.user.get_current().id
+                item['text'] = u'@{story} {title}'.format(
+                    story=story.getId(),
+                    title=_decode(item['title'])
+                )
+                del item['title']
 
-                obj = create_booking(story, item, reindex=True)
+                obj = create_booking(**item)
                 bookings.append(obj)
                 self.add_message(
                     'Created booking: %s' % '/'.join(
