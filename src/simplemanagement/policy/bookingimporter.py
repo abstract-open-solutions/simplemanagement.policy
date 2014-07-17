@@ -113,7 +113,7 @@ class BookingImporter(object):
                 item['date'] = datetime.strptime(
                     date_, self.DATE_FORMAT
                 ).date()
-                item['references'] = ('Story', IUUID(story))
+                item['references'] = [('Story', IUUID(story))]
                 item['owner'] = plone_api.user.get_current().id
                 item['text'] = u'@{story} {title}'.format(
                     story=story.getId(),
