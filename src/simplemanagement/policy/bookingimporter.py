@@ -13,6 +13,7 @@ from Products.CMFCore.utils import getToolByName
 from collective.simplemanagement.interfaces import IStory
 from collective.simplemanagement.interfaces import IProject
 from collective.simplemanagement.api.booking import create_booking
+from collective.simplemanagement.browser.widgets import book_widget
 from .interfaces import IBookingImporter
 
 
@@ -115,9 +116,11 @@ class BookingImporter(object):
                 ).date()
                 item['references'] = [('Story', IUUID(story))]
                 item['owner'] = plone_api.user.get_current().id
+                booking_title = _decode(item['title'])
+                item['tags'] = book_widget.extract_tags(booking_title)
                 item['text'] = u'@{story} {title}'.format(
                     story=story.getId(),
-                    title=_decode(item['title'])
+                    title=booking_title
                 )
                 del item['title']
 
