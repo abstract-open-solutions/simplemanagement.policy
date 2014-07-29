@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 
+from pytz import timezone
 from datetime import datetime
 from time import time
 from plone.memoize import ram
@@ -12,6 +13,15 @@ class CalendarLeaves(BrowserView):
 
     def _convert_date(self, time_st):
         return datetime.fromtimestamp(int(time_st)).isoformat()
+
+    @property
+    def _local_timezone(self):
+        return timezone('Europe/Rome')
+
+    def _to_localtime(self, date):
+        utc = timezone('utc')
+        _date = utc.localize(date)
+        return _date.astimezone(self._local_timezone)
 
     @ram.cache(lambda *args: time() // (60 * 60))
     def _results(self, start, end):
@@ -67,8 +77,8 @@ class CalendarLeaves(BrowserView):
                 'id': item.id,
                 'title': title,
                 'description': description,
-                'start': item.date_from.isoformat(),
-                'end': item.date_to.isoformat(),
+                'start': self._to_localtime(item.date_from).isoformat(),
+                'end': self._to_localtime(item.date_to).isoformat(),
                 'allDay': item.entire_day_flag
                 # 'number_of_days': holiday.number_of_days_temp,
                 # 'number_of_hours': holiday.number_of_hours
