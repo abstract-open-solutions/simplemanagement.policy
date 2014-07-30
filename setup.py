@@ -13,7 +13,7 @@ setup(name='simplemanagement.policy',
       description="Simple management buildout and boilerplate for testing",
       long_description=(
           open("README.txt").read() + "\n" +
-          open("HISTORY.txt").read()
+          open("CHANGES.txt").read()
       ),
       classifiers=[
           "Programming Language :: Python",
