@@ -17,4 +17,4 @@ def get_openerp_database_name(db_name):
         'srl': 'abstract_srl',
         'snc': 'abstract_snc'
     }
-    return map_.get(db_name, map_['srl'])
+    return map_.get(db_name.lower(), map_['srl'])
