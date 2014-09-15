@@ -61,7 +61,17 @@ class BookingImporter(object):
                     'warning'
                 )
 
-            path = brains[0].getPath()
+            project = brains[0]
+
+            if project.review_state in ('closed', 'dead'):
+
+                raise KeyError("Project '%(title)s' (%(id)s) is %(state)s" % {
+                    'title': project.Title,
+                    'state': project.review_state,
+                    'id': project_id
+                })
+
+            path = project.getPath()
             self.add_message(
                 'Got project: %s' % path
             )
@@ -81,11 +91,20 @@ class BookingImporter(object):
                     'More than one story has the same id: %s' % story_id,
                     'warning'
                 )
-            obj = brains[0].getObject()
-            self.add_message(
-                'Got story: %s' % '/'.join(obj.getPhysicalPath()),
-            )
-            return obj
+            story = brains[0]
+
+            if story.review_state in ('in_progress',):
+                obj = story.getObject()
+                self.add_message(
+                    'Got story: %s' % '/'.join(obj.getPhysicalPath()),
+                )
+                return obj
+
+            raise KeyError("Story '%(title)s' (%(id)s) is %(state)s" % {
+                'title': story.Title,
+                'state': story.review_state,
+                'id': story_id
+            })
 
         raise KeyError("Story not found: %s" % story_id)
 
