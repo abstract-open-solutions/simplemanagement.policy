@@ -1,5 +1,11 @@
 Changelog
 =========
+1.2
+----------------
+
+* fix openerp link
+
+* fix booking import procedure
 
 1.0 - Unreleased
 ----------------
