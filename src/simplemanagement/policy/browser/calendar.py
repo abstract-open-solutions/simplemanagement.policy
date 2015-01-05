@@ -23,7 +23,7 @@ class CalendarLeaves(BrowserView):
         _date = utc.localize(date)
         return _date.astimezone(self._local_timezone)
 
-    @ram.cache(lambda *args: time() // (60 * 60))
+    @ram.cache(lambda *args: (args[-2], args[-1], time() // (60 * 60)))
     def _results(self, start, end):
         """[
               {

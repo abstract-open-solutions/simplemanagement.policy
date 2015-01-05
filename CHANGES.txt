@@ -1,5 +1,12 @@
 Changelog
 =========
+
+1.2.1 (unreleased)
+------------------
+
+* Fixed small caching issue with calendar view.
+
+
 1.2
 ----------------
 
